@@ -79,6 +79,11 @@ timing = Benchmark.measure {
   SpotCueSpotlight.create({id: 4, spot_cue_id: 3, spotlight_id: 2, size: "1/8 B", intensity: "100%", action: "PU Actor 2", time: 3, notes: ""})
   SpotCueSpotlight.create({id: 5, spot_cue_id: 4, spotlight_id: 2, size: "1/8 B", intensity: "100%", action: "Fall Asleep", time: 3, notes: ""})
   ActiveRecord::Base.connection.execute("ALTER SEQUENCE public.spot_cue_spotlights_id_seq RESTART WITH 1000")
+
+  # Poputlate some Show's
+  Show.create( {id: 1, name: 'Small Show', venue: 'Little Place' })
+  Show.create( {id: 2, name: 'Big Show', venue: 'Big Place' })
+  ActiveRecord::Base.connection.execute("ALTER SEQUENCE public.shows_id_seq RESTART WITH 1000")
 }
 
 puts "Database seed timing: #{timing}"

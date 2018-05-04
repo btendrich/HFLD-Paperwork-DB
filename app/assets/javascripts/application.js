@@ -16,3 +16,14 @@
 //= require_tree .
 //= require jquery
 //= require cocoon
+
+$(function(){
+    // bind change event to select
+    $('#show_id').on('change', function () {
+        var id = $(this).val(); // get selected value
+        if (id) { // require a URL
+            window.location = "/set_show/" + id; // redirect
+        }
+        return false;
+    });
+});
