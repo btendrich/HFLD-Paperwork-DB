@@ -7,10 +7,16 @@ module ApplicationHelper
   end
 
   def visible_shows
-    Show.all.order(:name).collect { |show| [show.name, show.id] }
+    [['- Please Select -', -1]] + Show.all.order(:name).collect { |show| [show.name, show.id] }
   end
 
   def current_show
-    Show.find(session[:current_show_id]).nil? ? Show.new : Show.find(session[:current_show_id])
+    show = Show.where(id: session[:current_show_id])
+
+    if show.empty?
+      nil
+    else
+      show.first
+    end
   end
 end

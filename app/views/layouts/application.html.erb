@@ -53,7 +53,9 @@
       </div>
     </nav>
     <div>
-      <p>Your current show is '<%= current_show.name %>'</p>
+      <% if current_show %>
+        <p>Your current show is '<%= current_show.name %>'</p>
+      <% end %>
       <%= select_tag 'show_id', options_for_select( visible_shows, session[:current_show_id] ) %>
     </div>
     <%= yield %>

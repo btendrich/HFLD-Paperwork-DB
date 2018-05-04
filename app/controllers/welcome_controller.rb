@@ -7,11 +7,12 @@ class WelcomeController < ApplicationController
 
   def set_show
     # verify the show exists
-    @show = Show.find(params[:id])
-    if @show
-      session[:current_show_id] = @show.id
-    else
+    @show = Show.where(id: params[:id])
+    if @show.empty?
       flash[:error] = "Unable to find show id #{params[:id]}"
+      session[:current_show_id] = -1
+    else
+      session[:current_show_id] = @show.first.id
     end
     redirect_to root_path
   end
